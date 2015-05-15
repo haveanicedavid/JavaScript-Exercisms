@@ -22,7 +22,7 @@ class PhraseTest < Minitest::Test
 
   def test_count_everything_just_once
     phrase = Phrase.new('all the kings horses and all the kings men')
-    phrase.word_count # count it an extra time
+    phrase.word_count
     counts = {
       'all' => 2, 'the' => 2, 'kings' => 2,
       'horses' => 1, 'and' => 1, 'men' => 1

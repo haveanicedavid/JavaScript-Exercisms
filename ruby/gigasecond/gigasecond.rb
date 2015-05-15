@@ -1,7 +1,8 @@
 class Gigasecond
 
   def Gigasecond.from(input)
-    input + 10**9
+    seconds ||= 10**9
+    input + seconds
   end
 
 end

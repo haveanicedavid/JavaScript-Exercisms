@@ -21,11 +21,14 @@ class Fixnum
   def to_roman
     n = self
     result = ""
-    roman.each do |num, letter|
-      result << letter * (n / num)
-      n = n % num
+    wtf = roman.each_with_object do |numeral, key_num|
+      n / numeral
     end
-    result
+    # roman.each do |num, letter|
+    #   result << letter * (n / num)
+    #   n = n % num
+    # end
+    # result
     # result = []
     # roman.each_with_object(Hash.new(0)) do |num, hash|
     #   result << hash[num] 

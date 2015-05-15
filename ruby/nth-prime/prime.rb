@@ -1,5 +1,3 @@
-# I know this is ugyly. I tried drawing parts of the nth method out into other methods, but couldn't make it work...
-
 class Prime
 
   def self.nth(num)

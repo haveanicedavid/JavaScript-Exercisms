@@ -1,25 +1,16 @@
-# I'm sure there's a better way to do this...
-
 class Raindrops
 
+  DROPS = 
+   { 3 => "Pling",
+     5 => "Plang",
+     7 => "Plong"
+   }
+
   def self.convert(num)
-    if    num % 3 == 0 && num % 5 == 0 && num % 7 == 0
-      "PlingPlangPlong"
-    elsif num % 3 == 0 && num % 5 == 0
-      "PlingPlang"
-    elsif num % 3 == 0 && num % 7 == 0
-      "PlingPlong"
-    elsif num % 5 == 0 && num % 7 == 0
-      "PlangPlong"
-    elsif num % 3 == 0
-      "Pling"
-    elsif num % 5 == 0
-      "Plang"
-    elsif num % 7 == 0
-      "Plong"
-    else
-      num.to_s
-    end
+    result = DROPS.map do |num_key, word|
+      word if num % num_key == 0
+    end.join
+    result.empty? ? num.to_s : result
   end
 
 end

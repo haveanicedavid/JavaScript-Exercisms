@@ -1,9 +1,8 @@
 var WordCount = function(input) {
-  // var split = input.split(/\s+/);
   var results = {};
 
   input.split(/\s+/).forEach(function(word) {
-    if (results[word] && isNotFunction(results[word])) {
+    if (results[word] && results.hasOwnProperty(word)) {
       results[word]++;
     } else {
       results[word] = 1;
@@ -11,9 +10,5 @@ var WordCount = function(input) {
   });
   return results;
 };
-
-function isNotFunction (word) {
-  return Object.prototype.toString.call(word) !== '[object Function]';
-}
 
 module.exports = WordCount;

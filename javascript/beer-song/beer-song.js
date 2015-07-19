@@ -1,8 +1,10 @@
 function beerCheck () {
+
   return {
-    verse: function(num) {
+
+    verse: function (num) {
       if (num > 2) {
-        return manyBottles(num);
+        return manyBottles (num);
       } else if (num === 2) {
         return twoBottles();
       } else if (num === 1) {
@@ -12,10 +14,10 @@ function beerCheck () {
       }
     },
 
-    sing: function(start, end) {
-      var result          = [];
-      var verseToSing     = start;
-      var verseToEndOn      = (typeof end == 'undefined') ? 0 : end;
+    sing: function (start, end) {
+      var result            = [];
+      var verseToSing       = start;
+      var verseToEndOn      = (typeof end == 'undefined') ? null : end;
       while (verseToSing >= verseToEndOn) {
         result.push( this.verse(verseToSing));
         verseToSing-- ;

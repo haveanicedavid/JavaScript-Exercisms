@@ -32,8 +32,7 @@ Test.prototype.matches = function(input) {
   return matches;
 };
 
-module.exports = exports =  function anagramCheck(subject){
-
+module.exports  =  function anagramCheck(subject){
   return new Test(subject);
 };
 

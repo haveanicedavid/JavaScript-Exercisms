@@ -1,41 +1,48 @@
-var newHour;
-var newMinutes;
+// var currentHour;
+// var currentMinutes;
 
 exports.at = function(hour, minutes) {
-  newHour = hourParse(hour);
-  minutes ? newMinutes = minuteParse(minutes) : newMinutes = "00";
+  minutes          = minutes || 0;
+  var totalMinutes = (hour * 60) + minutes;
 
   return {
     plus : function(minutes) {
-      var tempMinutes = parseInt(newMinutes) + minutes; 
-      newMinutes      = minuteParse(tempMinutes);
+      tempMinutes = minutes + totalMinutes;
+      if (tempMinutes > (24 * 60) ) {
+        totalMinutes = tempMinutes % (24 * 60);
+      } else {
+        totalMinutes = tempMinutes;
+      }
       return this;
     },
-    toString : function () {
-      return newHour + ":" + newMinutes;
+
+    minus : function(mins) {
+      var newMinutes = totalMinutes - mins;
+
+      if (newMinutes < 0) {
+        totalMinutes =  newMinutes +(24 * 60);
+      } else {
+        totalMinutes = newMinutes;
+      }
+      return this;
     },
+
+    toString : function () {
+      finalHours   = Math.floor(totalMinutes / 60);
+      finalMinutes = totalMinutes % 60;
+
+      if (finalHours < 10) {
+        finalHours = "0" + finalHours;
+      }
+      if (finalMinutes < 10) {
+        finalMinutes = "0" + finalMinutes;
+      }
+      return finalHours + ":" + finalMinutes;
+    },
+
+    equals : function (otherClock) {
+      return otherClock.toString() === this.toString();
+    }
   };
+
 };
-
-function hourParse (hour) {
-  if (hour > 23) {
-    return hourParse(hour % 24);
-  } else if (hour < 10) {
-    return "0" + hour;
-  } else {
-    return String(hour);
-  }
-}
-
-
-function minuteParse (minutes) {
-  if (minutes > 60) {
-    newHour = hourParse(parseInt(newHour) + 1);
-    return minuteParse(minutes % 60);
-  } else if (minutes < 10) {
-    return "0" + minutes;
-  } else if ( minutes > 60 ) {
-  } else {
-    return String(minutes);
-  }
-}

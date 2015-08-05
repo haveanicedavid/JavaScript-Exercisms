@@ -27,12 +27,12 @@ describe("Clock", function () {
     expect(clock.toString()).toEqual("00:01");
   });
 
-  xit("can subtract minutes", function () {
+  it("can subtract minutes", function () {
     var clock = at(10, 3).minus(3);
     expect(clock.toString()).toEqual("10:00");
   });
 
-  xit("can subtract over an hour", function () {
+  it("can subtract over an hour", function () {
     var clock = at(10, 3).minus(30);
     expect(clock.toString()).toEqual("09:33");
 
@@ -40,19 +40,19 @@ describe("Clock", function () {
     expect(clock.toString()).toEqual("08:53");
   });
 
-  xit("can know if it's equal to another clock", function () {
+  it("can know if it's equal to another clock", function () {
     var clock1 = at(10, 3);
     var clock2 = at(10, 3);
     expect(clock1.equals(clock2)).toBe(true);
   });
 
-  xit("can know if it's not equal to another clock", function () {
+  it("can know if it's not equal to another clock", function () {
     var clock1 = at(10, 3);
     var clock2 = at(10, 4);
     expect(clock1.equals(clock2)).toBe(false);
   });
 
-  xit("wraps around midnight backwards", function () {
+  it("wraps around midnight backwards", function () {
     var clock = at(0, 3).minus(4);
     expect(clock.toString()).toEqual("23:59");
   });

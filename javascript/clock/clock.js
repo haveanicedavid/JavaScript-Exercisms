@@ -1,6 +1,3 @@
-// var currentHour;
-// var currentMinutes;
-
 exports.at = function(hour, minutes) {
   minutes          = minutes || 0;
   var totalMinutes = (hour * 60) + minutes;

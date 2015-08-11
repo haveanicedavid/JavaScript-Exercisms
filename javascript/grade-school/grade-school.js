@@ -13,7 +13,6 @@ var School = function () {
     } else {
       roster[grade] = [name];
     }
-
   };
 
   this.grade = function(grade) {

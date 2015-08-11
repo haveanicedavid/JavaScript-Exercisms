@@ -23,9 +23,11 @@ Phone.prototype.areaCode = function () {
 
 Phone.prototype.toString = function () {
   number = this.num;
+
   var areaCode   = "(" + number.slice(0, 3) + ") ";
   var firstThree = number.slice(3, 6) + "-";
   var lastFour   = number.slice(6, 10);
+  
   return areaCode + firstThree + lastFour;
 };
 

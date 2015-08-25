@@ -1,7 +1,6 @@
 class Fixnum
 
-  def roman
-    {
+  ROMAN = {
       1000 => "M",  
       900  => "CM",  
       500  => "D",  
@@ -16,21 +15,14 @@ class Fixnum
       4    => "IV",  
       1    => "I"  
     }
-  end
 
   def to_roman
     n = self
     result = ""
-    wtf = roman.each_with_object do |numeral, key_num|
-      n / numeral
+    ROMAN.each do |num, letter|
+      result << letter * (n / num)
+      n = n % num
     end
-    # roman.each do |num, letter|
-    #   result << letter * (n / num)
-    #   n = n % num
-    # end
-    # result
-    # result = []
-    # roman.each_with_object(Hash.new(0)) do |num, hash|
-    #   result << hash[num] 
+    return result
   end
 end

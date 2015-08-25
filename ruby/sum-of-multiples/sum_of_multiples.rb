@@ -17,7 +17,8 @@ class SumOfMultiples
 
   def self.to(num)
     multiples = [3,5] || @multiples
-    n = *(1...num).to_a.select {|x| multiples.any? {|y| x % y == 0} }
+    num_range = *(1...num).to_a
+    num_range.select {|x| multiples.any? {|y| x % y == 0} }
     n.empty? ? 0 : n.reduce(:+)
   end
   

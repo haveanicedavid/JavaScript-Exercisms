@@ -2,30 +2,25 @@
 
 class School {
   constructor() {
-    this.roster = {};
+    this.currentRoster = {};
+  }
+
+  roster() {
+    return this.currentRoster;
+  }
+
+  add(name, grade) {
+    if (this.currentRoster[grade]) {
+      this.currentRoster[grade].push(name);
+      this.currentRoster[grade].sort();
+    } else {
+      this.currentRoster[grade] = [name];
+    }
+  }
+
+  grade(grade) {
+    return this.currentRoster[grade] ?  this.currentRoster[grade] : [];
   }
 }
-// var School = function () {
-//
-//   var roster = {};
-//
-//   this.roster = function() {
-//     return roster;
-//   };
-//
-//   this.add = function(name, grade) {
-//     if (roster[grade]) {
-//       roster[grade].push(name);
-//       roster[grade].sort();
-//     } else {
-//       roster[grade] = [name];
-//     }
-//   };
-//
-//   this.grade = function(grade) {
-//     return roster[grade] ?  roster[grade] : [];
-//   };
-//
-// };
-//
-// module.exports = School;
+
+module.exports = School;

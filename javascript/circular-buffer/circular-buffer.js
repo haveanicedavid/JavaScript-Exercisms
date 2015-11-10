@@ -1,32 +1,48 @@
-module.exports = {
-  circularBuffer: function(bufferLength) {
-    var contents = [];
-    return {
-      read: function() {
-        if (contents.length === 0) {
-          throw bufferEmptyException();
-        }
-        return contents.shift();
-      },
-      write: function(item) {
-        if (contents.length === bufferLength) {
-          throw bufferFullException();
-        } else if (item) {
-          contents.push(item);
-        } 
-      },
-      forceWrite: function(item) {
-        contents.push(item);
-        contents.shift();
-      },
-      clear: function() {
-        contents = [];
-      },
-    };
-  },
+'use strict';
 
-  bufferEmptyException: function() {},
+class BufferEmptyException extends Error {
+  constructor() {
+    super('Buffer is empty');
+  }
+} 
 
-  bufferFullException: function() {},
+class BufferFullException extends Error {
+  constructor() {
+    super('Buffer is full');
+  }
+} 
 
-};
+class CircularBuffer {
+  constructor(bufferLength) {
+    this.bufferLength = bufferLength;
+    this.contents = [];
+  }
+
+  read() {
+    if (this.contents.length === 0) {
+      throw new BufferEmptyException();
+    }
+    return this.contents.shift();
+  }
+
+  write(item) {
+    if (this.contents.length === this.bufferLength) {
+      throw new BufferFullException();
+    } else if (item) {
+      this.contents.push(item);
+    } 
+  }
+
+  forceWrite(item) {
+    this.contents.push(item);
+    this.contents.shift();
+  }
+
+  clear() {
+    this.contents = [];
+  }
+}
+
+module.exports.bufferEmptyException = ()   =>  new BufferEmptyException();
+module.exports.bufferFullException  = ()   =>  new BufferFullException();
+module.exports.circularBuffer       = size =>  new CircularBuffer(size);

@@ -1,10 +1,12 @@
-exports.at = function(hour, minutes) {
+'use strict';
+
+module.exports.at = function(hour, minutes) {
   minutes          = minutes || 0;
-  var totalMinutes = (hour * 60) + minutes;
+  let totalMinutes = (hour * 60) + minutes;
 
   return {
-    plus : function(minutes) {
-      tempMinutes = minutes + totalMinutes;
+    plus(minutes) {
+      let tempMinutes = minutes + totalMinutes;
       if (tempMinutes > (24 * 60) ) {
         totalMinutes = tempMinutes % (24 * 60);
       } else {
@@ -13,8 +15,8 @@ exports.at = function(hour, minutes) {
       return this;
     },
 
-    minus : function(mins) {
-      var newMinutes = totalMinutes - mins;
+    minus(mins) {
+      let newMinutes = totalMinutes - mins;
 
       if (newMinutes < 0) {
         totalMinutes =  newMinutes +(24 * 60);
@@ -24,9 +26,9 @@ exports.at = function(hour, minutes) {
       return this;
     },
 
-    toString : function () {
-      finalHours   = Math.floor(totalMinutes / 60);
-      finalMinutes = totalMinutes % 60;
+    toString() {
+      let finalHours   = Math.floor(totalMinutes / 60);
+      let finalMinutes = totalMinutes % 60;
 
       if (finalHours < 10) {
         finalHours = "0" + finalHours;
@@ -37,7 +39,7 @@ exports.at = function(hour, minutes) {
       return finalHours + ":" + finalMinutes;
     },
 
-    equals : function (otherClock) {
+    equals(otherClock) {
       return otherClock.toString() === this.toString();
     }
   };

@@ -1,27 +1,23 @@
-function Anagram (originalWord) {
-  this.originalWordSorted = sortWord(originalWord);
+'use strict';
 
-  this.matches = function(input) {
-    if (typeof input === 'object') {
-      input = input.filter(function(word) {
-        return word.toLowerCase() !== originalWord.toLowerCase(); 
-      });
-    } else {
-      input = Array.prototype.slice.call(arguments);
+function sortWord(word) {
+  return word.toLowerCase().split('').sort().join('');
+}
+
+function isAnagram(word1, word2) {
+  word1 = word1.toLowerCase();
+  word2 = word2.toLowerCase();
+  return sortWord(word1) === sortWord(word2) && word1 !== word2;
+}
+
+module.exports = function(testWord) {
+  return {
+    matches(input) {
+      if (typeof input !== 'object') {
+        input = Array.prototype.slice.call(arguments);
+      }
+
+      return input.filter( x => isAnagram(testWord, x) );
     }
-
-    return input.filter(function(word) {
-      return originalWordSorted === sortWord(word);
-    });
-
   };
-
-  return this;
-}
-
-function sortWord (word) {
-  return word.toLowerCase().split("").sort().join("");
-}
-
-
-module.exports = Anagram;
+};

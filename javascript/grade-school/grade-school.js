@@ -19,7 +19,7 @@ class School {
   }
 
   grade(grade) {
-    return this.currentRoster[grade] ?  this.currentRoster[grade] : [];
+    return this.currentRoster[grade] || [];
   }
 }
 

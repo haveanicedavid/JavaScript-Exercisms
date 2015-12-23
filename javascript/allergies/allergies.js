@@ -15,30 +15,19 @@ var allergies = {
 class Allergies {
   constructor(number) {
     this.number = number;
-    this.retString = [];
-  }
-
-  parseNumber(n) {
-    if (allergies[n]) {
-      this.retString.push(allergies[n]);
-    }
-    // for (var num in allergies) {
-    //   if (n % num === 0) {
-    //     this.retString.push(allergies[n]);
-    //     if (this.number / n !== 1) {
-    //       this.parseNumber(n - this.number);
-    //     }
-    //   }
-    // }
   }
 
   list() {
-    if (!this.number) {
-      return [];
+    let ret = [];
+    if (!this.number) { return ret; } // handle no allergies
+    if (allergies[this.number]) {
+      ret.push(allergies[this.number]);
+      return ret;
     }
 
-    this.parseNumber(this.number);
-    return _.uniq(this.retString);
+    for (var n in allergies) {
+
+    }
   }
 }
 

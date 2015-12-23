@@ -1,19 +1,19 @@
-function Binary (binary) {
-  this.num = binary.split("").reverse().map(function(n) { 
-    return parseInt(n); 
-  });
-}
+'use strict';
 
-Binary.prototype.toDecimal = function () {
-  var result   = 0;
-  var modifier = 1;
-
-  
-  for (var i = 0; i < this.num.length; i++) {
-    result = result + (this.num[i] * modifier);
-    modifier *= 2;
+class Binary {
+  constructor(numString) {
+    this.num = numString.split("")
+                        .reverse()
+                        .map(n => parseInt(n));
   }
-  return result ? result : 0;
-};
+
+  toDecimal() {
+    let binary = this.num.reduce( (prev, curr, idx) => 
+      prev + (curr * Math.pow(2, idx))
+    );
+
+    return binary || 0;
+  }
+}
 
 module.exports = Binary;
